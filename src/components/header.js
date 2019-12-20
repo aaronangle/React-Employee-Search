@@ -4,9 +4,7 @@ import Input from "./input"
 function Header() {
     return (
         <div>
-            <div className="header" onClick={e => {
-                alert("hi")
-            }}>
+            <div className="header" >
                 <Input />
             </div>
             <div className="bar">

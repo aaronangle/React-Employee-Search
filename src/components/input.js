@@ -1,14 +1,12 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react";
+import InputContent from "../util/InputContent";
 
-function Input(props) {
-    const [search, getSearch] = useState("");
-    const handleInputChange = (event) => {
-        let value = event.target.value;
-        getSearch(value)
-    }
+const Input = () => {
+    const { inputState, handleInputChange } = useContext(InputContent);
+
     return (
         <div>
-            <input className="input" type="text" value={search} onChange={handleInputChange}></input>
+            <input className="input" type="text" value={inputState} onChange={handleInputChange}></input>
             <button className="search">Search</button>
         </div>
     )

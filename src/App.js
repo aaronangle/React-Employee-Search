@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import './App.css';
 import Header from "./components/header"
 import EmployeeView from "./components/employee-view";
 import InputContent from "./util/InputContent"
 
 function App() {
+  const [inputState, setInputState] = useState("")
+
+  const handleInputChange = (event) => {
+    let value = event.target.value;
+    return setInputState(value)
+  }
+
   return (
     <div>
-      <InputContent.provider value={}>
+      <InputContent.Provider value={{ inputState, handleInputChange }}>
         <Header />
         <EmployeeView />
-      </InputContent.provider>
+      </InputContent.Provider>
     </div>
   )
 }
