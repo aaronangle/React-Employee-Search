@@ -1,1 +1,2 @@
-# React-Employee-Search
+# Employee-Search
+This employee search directory was built using React. It makes a call to the random user api to get mock data to display to the user. The app displays a user profile picture, name, date of birth, and phone number. There is an option to search which will filter through the users data and return the users that you search for. There is also an option to alphabetically sort the users by name.
