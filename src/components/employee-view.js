@@ -8,11 +8,15 @@ function EmployeeView() {
 
     const [employees, getEmployee] = useState([])
     const [letters, getLetters] = useState("A-Z")
-    console.log(employees)
+
     useEffect(() => {
         API.getUsers()
             .then(data => {
+                console.log(data)
                 return getEmployee(data.data.results)
+            })
+            .catch(err => {
+                console.log("error", err)
             });
     }, [])
     function niceDate(date) {
