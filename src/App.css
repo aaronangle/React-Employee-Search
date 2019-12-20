@@ -5,7 +5,8 @@
   margin: auto;
   box-shadow: 5px 10px 5px 5px #888888;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
   border-radius: 10px;
 }
@@ -25,4 +26,11 @@
   border-radius: 10px;
   border: none;
   margin-right: 10px;
+}
+.sort{
+  background:#131313;
+  margin-left: 30px;
+}
+h1{
+  color: white;
 }

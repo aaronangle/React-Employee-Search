@@ -5,23 +5,31 @@ import InputContent from "../util/InputContent"
 
 function EmployeeView() {
     const { inputState } = useContext(InputContent);
-    console.log(inputState)
 
     const [employees, getEmployee] = useState([])
-
+    const [letters, getLetters] = useState("A-Z")
+    console.log(employees)
     useEffect(() => {
         API.getUsers()
             .then(data => {
-                getEmployee(data.data.results)
+                return getEmployee(data.data.results)
             });
     }, [])
     function niceDate(date) {
         return new Date(date).toLocaleString().split(",", 1)
     }
 
-    function filterName(first) {
-        if (first === "Leon") {
-            return first
+    function sort() {
+        if (letters === "A-Z") {
+            const array = [...employees]
+            array.sort((a, b) => (a.name.first > b.name.first) ? 1 : -1)
+            getEmployee(array)
+            getLetters("Z-A")
+        } else {
+            const array = [...employees]
+            array.sort((a, b) => (a.name.first < b.name.first) ? 1 : -1)
+            getEmployee(array)
+            getLetters("A-Z")
         }
     }
 
@@ -30,7 +38,7 @@ function EmployeeView() {
             <thead>
                 <tr>
                     <th></th>
-                    <th>Name</th>
+                    <th>Name <button onClick={sort} className="search sort">Sort {letters}</button></th>
                     <th>Email</th>
                     <th>DOB</th>
                     <th>Phone</th>
@@ -54,7 +62,7 @@ function EmployeeView() {
                         .map(item =>
                             <tr key={item.login.uuid}>
                                 <td ><img src={item.picture.thumbnail} alt="Profile-Pic"></img></td>
-                                <td>{item.name.first} {item.name.last}{filterName(item.name.first)}</td>
+                                <td>{item.name.first} {item.name.last}</td>
                                 <td>{item.email}</td>
                                 <td>{niceDate(item.dob.date)}</td>
                                 <td>{item.cell}</td>
